@@ -1,0 +1,51 @@
+{
+  "variables":
+  {
+    "name": "jmeter",
+    "version": "1",
+    "access_key": "{{env `AWS_ACCESS_KEY`}}",
+    "secret_key": "{{env `AWS_SECRET_KEY`}}",
+    "source_ami": "{{env `AWS_DEFAULT_BASE_AMI`}}",
+    "aws_region": "{{env `AWS_DEFAULT_REGION`}}",
+    "vpc_id": "{{env `AWS_PACKER_VPC`}}",
+    "subnet_id": "{{env `AWS_PACKER_SUBNET`}}"
+  },
+  "builders":
+  [
+    {
+      "type": "amazon-ebs",
+      "access_key": "{{user `access_key`}}",
+      "secret_key": "{{user `secret_key`}}",
+      "region": "{{user `aws_region`}}",
+      "source_ami": "{{user `source_ami`}}",
+      "instance_type": "t2.micro",
+      "ssh_username": "centos",
+      "ami_name": "{{user `name`}}-{{user `version`}}",
+      "vpc_id": "{{user `vpc_id`}}",
+      "subnet_id": "{{user `subnet_id`}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo yum install -y epel-release",
+        "sudo yum install -y ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "development.yml",
+      "role_paths": [
+        "../ansible-role-jmeter"
+      ]
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "sudo yum erase ansible -y",
+        "sudo rm -rf /tmp/packer-provisioner-ansible-local/"
+      ]
+    }
+  ]
+}
