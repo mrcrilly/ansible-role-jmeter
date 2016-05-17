@@ -1,0 +1,12 @@
+---
+
+- name: Upload systemd service file
+  template:
+    src: jmeter.service.j2
+    dest: /etc/systemd/system/jmeter.service
+
+- name: Start the jMeter service
+  service:
+    name: jmeter
+    state: started
+    enabled: true

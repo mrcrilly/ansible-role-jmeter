@@ -1,0 +1,10 @@
+[Unit]
+Description=jMeter 
+After=network.target
+
+[Service]
+Environment=RMI_HOST_DEF=-Djava.rmi.server.hostname={{ansible_default_ipv4.address}}
+ExecStart=/home/jmeter/apache-jmeter-2.13/bin/jmeter-server
+
+[Install]
+WantedBy=multi-user.target

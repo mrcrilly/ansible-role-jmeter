@@ -1,0 +1,6 @@
+---
+
+- name: Add jMeter user
+  user:
+    name: jmeter 
+    state: present

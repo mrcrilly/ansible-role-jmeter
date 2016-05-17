@@ -1,0 +1,5 @@
+---
+
+- include: user.yml
+- include: software.yml
+- include: service.yml

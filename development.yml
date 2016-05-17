@@ -1,0 +1,7 @@
+---
+
+- name: Test the jMeter role
+  hosts: all
+  become: true
+  roles:
+    - ansible-role-jmeter

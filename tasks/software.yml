@@ -1,0 +1,15 @@
+---
+
+- name: Install dependencies
+  yum:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - java
+
+- name: Install jMeter from URL
+  unarchive:
+    src: http://apache.uberglobalmirror.com//jmeter/binaries/apache-jmeter-2.13.tgz
+    dest: /home/jmeter/
+    copy: no
+    creates: /home/jmeter/apache-jmeter-2.13/bin
