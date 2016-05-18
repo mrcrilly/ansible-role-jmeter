@@ -1,5 +1,16 @@
 ---
 
 - include: user.yml
+  tags:
+    - jmeter
+    - jmeter-user
+
 - include: software.yml
+  tags:
+    - jmeter
+    - jmeter-software
+
 - include: service.yml
+  tags:
+    - jmeter
+    - jmeter-service

@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 Environment=RMI_HOST_DEF=-Djava.rmi.server.hostname={{ansible_default_ipv4.address}}
+Environment=JVM_ARGS=-Xms{{jmeter_xms}} -Xmx{{jmeter_xmx}}
 ExecStart=/home/jmeter/apache-jmeter-2.13/bin/jmeter-server
 
 [Install]

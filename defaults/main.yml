@@ -1,2 +1,6 @@
 ---
-# defaults file for .
+
+jmeter_software_url: http://apache.uberglobalmirror.com//jmeter/binaries/apache-jmeter-2.13.tgz
+jmeter_software_version: 2.13
+jmeter_xmx: 3g
+jmeter_xms: 3g

@@ -9,7 +9,7 @@
 
 - name: Install jMeter from URL
   unarchive:
-    src: http://apache.uberglobalmirror.com//jmeter/binaries/apache-jmeter-2.13.tgz
+    src: "{{jmeter_software_url}}"
     dest: /home/jmeter/
     copy: no
-    creates: /home/jmeter/apache-jmeter-2.13/bin
+    creates: "/home/jmeter/apache-jmeter-{{jmeter_software_version}}/bin"
