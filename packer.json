@@ -3,10 +3,10 @@
   {
     "name": "jmeter",
     "version": "1",
-    "access_key": "{{env `AWS_ACCESS_KEY`}}",
-    "secret_key": "{{env `AWS_SECRET_KEY`}}",
-    "source_ami": "{{env `AWS_DEFAULT_BASE_AMI`}}",
+    "access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+    "secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "aws_region": "{{env `AWS_DEFAULT_REGION`}}",
+    "source_ami": "{{env `AWS_DEFAULT_BASE_AMI`}}",
     "vpc_id": "{{env `AWS_PACKER_VPC`}}",
     "subnet_id": "{{env `AWS_PACKER_SUBNET`}}"
   },
@@ -22,7 +22,9 @@
       "ssh_username": "centos",
       "ami_name": "{{user `name`}}-{{user `version`}}",
       "vpc_id": "{{user `vpc_id`}}",
-      "subnet_id": "{{user `subnet_id`}}"
+      "subnet_id": "{{user `subnet_id`}}",
+      "communicator": "ssh",
+      "ssh_pty": true
     }
   ],
   "provisioners": [
